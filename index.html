@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <meta
+      name="description"
+      content="Genera contraseñas seguras y aleatorias directamente en tu dispositivo."
+    />
+    <meta name="theme-color" content="#080d19" />
+    <title>KeySegm</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Clave, inicio">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3" />
+              <rect x="4.5" y="10" width="15" height="11" rx="2.5" />
+              <path d="M12 14v3" />
+            </svg>
+          </span>
+          <span>KeySegm<span class="brand-period">.</span></span>
+        </a>
+        <div class="privacy-pill">
+          <span class="privacy-dot" aria-hidden="true"></span>
+          Privado por diseño
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="page-title">
+          <div class="eyebrow"><span></span> GENERADOR DE CONTRASEÑAS</div>
+          <h1 id="page-title">Tu seguridad empieza<br class="desktop-break" /> con una buena clave</h1>
+          <p class="hero-copy">
+            Crea contraseñas únicas y robustas. Todo sucede en tu dispositivo;
+            tus claves nunca salen de aquí.
+          </p>
+        </section>
+
+        <section class="generator-card" aria-label="Generador de contraseñas">
+          <div class="card-topline">
+            <span class="section-label">NUEVA CONTRASEÑA</span>
+            <span class="local-badge">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M5 7V5a3 3 0 0 1 6 0v2M3.5 7h9v6h-9z" />
+              </svg>
+              SOLO EN ESTE DISPOSITIVO
+            </span>
+          </div>
+
+          <div class="password-row">
+            <div class="password-field">
+              <input
+                id="password"
+                type="password"
+                value=""
+                readonly
+                spellcheck="false"
+                autocomplete="off"
+                aria-label="Contraseña generada"
+                aria-describedby="password-count"
+              />
+              <span class="password-caret" aria-hidden="true"></span>
+            </div>
+            <button class="icon-button" id="toggle-visibility" type="button" aria-label="Mostrar contraseña" title="Mostrar contraseña">
+              <svg class="eye-open" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z" />
+                <circle cx="12" cy="12" r="2.5" />
+              </svg>
+              <svg class="eye-closed" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m3 3 18 18M10.6 6.2A10 10 0 0 1 12 6c6.1 0 9.5 6 9.5 6a15 15 0 0 1-3.1 3.5M6.2 6.2C3.8 7.7 2.5 12 2.5 12s3.4 6 9.5 6c1 0 1.9-.2 2.8-.5" />
+                <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+              </svg>
+            </button>
+            <button class="icon-button" id="copy-button" type="button" aria-label="Copiar contraseña" title="Copiar contraseña">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="8" y="8" width="12" height="12" rx="2" />
+                <path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="password-meta">
+            <span id="password-count" aria-live="polite">0 caracteres</span>
+            <div class="strength-summary">
+              <span class="strength-caption">FORTALEZA</span>
+              <span id="strength-label" class="strength-label">—</span>
+            </div>
+          </div>
+          <div
+            class="strength-track"
+            role="meter"
+            aria-label="Fortaleza de la contraseña"
+            aria-valuemin="0"
+            aria-valuemax="5"
+            aria-valuenow="0"
+            id="strength-meter"
+          >
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+
+          <div class="card-divider"></div>
+
+          <div class="controls-heading">
+            <div>
+              <h2>Personaliza tu contraseña</h2>
+              <p>Elige la longitud y los caracteres que quieras incluir.</p>
+            </div>
+          </div>
+
+          <div class="length-control">
+            <div class="control-label-row">
+              <label for="length">Longitud</label>
+              <output id="length-value" for="length">20</output>
+            </div>
+            <input id="length" type="range" min="16" max="64" value="20" />
+            <div class="range-labels" aria-hidden="true"><span>16 caracteres</span><span>64 caracteres</span></div>
+          </div>
+
+          <fieldset class="character-options">
+            <legend>Tipos de caracteres</legend>
+            <label class="option-card">
+              <input type="checkbox" id="uppercase" checked />
+              <span class="custom-check" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" /></svg>
+              </span>
+              <span class="option-content"><span class="option-name">Mayúsculas</span><span class="option-sample">A – Z</span></span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" id="lowercase" checked />
+              <span class="custom-check" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" /></svg>
+              </span>
+              <span class="option-content"><span class="option-name">Minúsculas</span><span class="option-sample">a – z</span></span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" id="numbers" checked />
+              <span class="custom-check" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" /></svg>
+              </span>
+              <span class="option-content"><span class="option-name">Números</span><span class="option-sample">0 – 9</span></span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" id="symbols" checked />
+              <span class="custom-check" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" /></svg>
+              </span>
+              <span class="option-content"><span class="option-name">Símbolos</span><span class="option-sample">! @ # $ % &amp;</span></span>
+            </label>
+          </fieldset>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+
+          <button id="generate-button" class="generate-button" type="button">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10 2.5v3M10 14.5v3M2.5 10h3m9 0h3M4.7 4.7l2.1 2.1m6.4 6.4 2.1 2.1m0-10.6-2.1 2.1m-6.4 6.4-2.1 2.1" />
+              <circle cx="10" cy="10" r="3.5" />
+            </svg>
+            Generar contraseña
+            <span class="button-shortcut">↵</span>
+          </button>
+          <p class="secure-note">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 7V5a3 3 0 0 1 6 0v2M3.5 7h9v6h-9z" /></svg>
+            Generación criptográfica segura · Sin almacenamiento
+          </p>
+        </section>
+
+        <section class="info-section" aria-labelledby="info-title">
+          <div class="info-heading">
+            <span class="eyebrow"><span></span> UN POCO DE SEGURIDAD</span>
+            <h2 id="info-title">Pequeños hábitos. Gran protección.</h2>
+          </div>
+          <div class="info-grid">
+            <article class="info-card">
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-3Z" /><path d="m9 12 2 2 4-4" /></svg>
+              </span>
+              <h3>Más longitud, más seguridad</h3>
+              <p>Una contraseña larga y aleatoria es mucho más difícil de adivinar. Por eso recomendamos usar al menos 16 caracteres.</p>
+            </article>
+            <article class="info-card">
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="6" height="6" rx="1" /><rect x="14" y="4" width="6" height="6" rx="1" /><rect x="4" y="14" width="6" height="6" rx="1" /><path d="M17 14v6m-3-3h6" /></svg>
+              </span>
+              <h3>Una clave para cada cuenta</h3>
+              <p>Reutilizar contraseñas pone varias cuentas en riesgo si una se filtra. Una contraseña única mantiene cada cuenta independiente.</p>
+            </article>
+            <article class="info-card">
+              <span class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3" /></svg>
+              </span>
+              <h3>Usa un gestor y activa MFA</h3>
+              <p>Un administrador de contraseñas te ayuda a guardar claves únicas. La autenticación multifactor añade otra capa de protección.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <a class="brand footer-brand" href="#" aria-label="Clave, inicio">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3" /><rect x="4.5" y="10" width="15" height="11" rx="2.5" /><path d="M12 14v3" /></svg>
+          </span>
+          <span>clave<span class="brand-period">.</span></span>
+        </a>
+        <span>Hecho para tu tranquilidad. Tus claves, solo tuyas.</span>
+      </footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
